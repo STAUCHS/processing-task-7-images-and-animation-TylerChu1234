@@ -1,17 +1,71 @@
 import processing.core.PApplet;
+import processing.core.PImage;
 
 public class Sketch extends PApplet {
+
+  PImage imgMeteor;
+  PImage imgBackground;
+  // x and y coordinate for meteor
+  float fltMeteorX = 50;
+  float fltMeteorY = 100;
+  float fltBackX = 0;
+  float fltBackY = 0;
+
+  // meteor speed variables
+  float fltXSpeed = random(1, 5);
+  float fltYSpeed = random(1, 5);
+
+  // define colours
+  int black = color(0);
+  int white = color(255);
+  int magenta = color(255, 0, 255);
 
   public void settings() {
     size(400, 400);
   }
 
   public void setup() {
-    background(210, 255, 173);
+    background(0, 0, 0);
+    // load meteor
+    imgMeteor = loadImage("george.jpeg");
+    // resize meteor
+    // imgMeteor.resize(50, 50);
+    imgMeteor.resize(imgMeteor.width/2, imgMeteor.height/2);
+    // load missile
+
+    // resize missile
+
+    // load rocket
+
+    // resize rocket
+
+    // background
+    imgBackground = loadImage("size.png");
+    imgBackground.resize(imgBackground.width*2, imgBackground.height*2);
   }
 
   public void draw() {
     
-  }
+    image (imgBackground, fltBackX, fltBackY);
+    
+    // draw meteor and move
+    image(imgMeteor, fltMeteorX, fltMeteorY);
 
+    fltMeteorX += fltXSpeed;
+    fltMeteorY += fltYSpeed;
+
+    if (fltMeteorX > width - imgMeteor.width || fltMeteorX < 0) {
+      fltXSpeed *= -1;
+    }
+
+    if (fltMeteorY > height - imgMeteor.height || fltMeteorY < 0) {
+      fltYSpeed *= -1;
+    }
+
+    // draw missile and move
+
+
+    // draw rocket and move
+
+  }
 }

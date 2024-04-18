@@ -5,16 +5,20 @@ public class Sketch extends PApplet {
 
   PImage imgMeteor;
   PImage imgBackground;
+  
   // x and y coordinate for meteor
   float fltMeteorX = 50;
   float fltMeteorY = 100;
   float fltBackX = 0;
   float fltBackY = 0;
+  float fltEllipseX = 50;
+  float fltEllipseY = 100;
 
   // meteor speed variables
   float fltXSpeed = random(1, 5);
   float fltYSpeed = random(1, 5);
-
+  float fltEllipseXSpeed = random(1,5);
+  float fltEllipseYSpeed = random(1,5);
   // define colours
   int black = color(0);
   int white = color(255);
@@ -42,11 +46,19 @@ public class Sketch extends PApplet {
     // background
     imgBackground = loadImage("size.png");
     imgBackground.resize(imgBackground.width*2, imgBackground.height*2);
+
+
+    
   }
 
   public void draw() {
     
     image (imgBackground, fltBackX, fltBackY);
+    fill(black);
+    ellipse(fltEllipseX,fltEllipseY,50,50);
+    fltEllipseX+=fltEllipseXSpeed;
+    fltEllipseY+=fltEllipseYSpeed;
+    
     
     // draw meteor and move
     image(imgMeteor, fltMeteorX, fltMeteorY);
@@ -54,12 +66,20 @@ public class Sketch extends PApplet {
     fltMeteorX += fltXSpeed;
     fltMeteorY += fltYSpeed;
 
+
     if (fltMeteorX > width - imgMeteor.width || fltMeteorX < 0) {
       fltXSpeed *= -1;
     }
 
     if (fltMeteorY > height - imgMeteor.height || fltMeteorY < 0) {
       fltYSpeed *= -1;
+    }
+    if (fltEllipseX > width || fltEllipseX < 0) {
+      fltEllipseXSpeed *= -1;
+    }
+
+    if (fltEllipseY > height || fltEllipseY < 0) {
+      fltEllipseYSpeed *= -1;
     }
 
     // draw missile and move

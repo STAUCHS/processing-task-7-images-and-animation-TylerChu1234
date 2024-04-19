@@ -13,12 +13,17 @@ public class Sketch extends PApplet {
   float fltBackY = 0;
   float fltEllipseX = 50;
   float fltEllipseY = 100;
+  float fltRectX = 50;
+  float fltRectY = 100;
+  float fltRectAngle;
+
 
   // meteor speed variables
   float fltXSpeed = random(1, 5);
   float fltYSpeed = random(1, 5);
   float fltEllipseXSpeed = random(1,5);
   float fltEllipseYSpeed = random(1,5);
+  float fltRectangleSpeed = (float)0.3;
   // define colours
   int black = color(0);
   int white = color(255);
@@ -58,6 +63,10 @@ public class Sketch extends PApplet {
     ellipse(fltEllipseX,fltEllipseY,50,50);
     fltEllipseX+=fltEllipseXSpeed;
     fltEllipseY+=fltEllipseYSpeed;
+    fill(magenta);
+    rect(fltRectX, fltRectY, 20,20);
+    fltRectX += width / 4 * cos(fltRectAngle) * fltRectangleSpeed;
+    fltRectY += height / 4 * sin(fltRectAngle) * fltRectangleSpeed;
     
     
     // draw meteor and move
@@ -67,21 +76,24 @@ public class Sketch extends PApplet {
     fltMeteorY += fltYSpeed;
 
 
-    if (fltMeteorX > width - imgMeteor.width || fltMeteorX < 0) {
+    if (fltMeteorX >= width - imgMeteor.width || fltMeteorX <= 0) {
       fltXSpeed *= -1;
     }
 
-    if (fltMeteorY > height - imgMeteor.height || fltMeteorY < 0) {
+    if (fltMeteorY >= height - imgMeteor.height || fltMeteorY <= 0) {
       fltYSpeed *= -1;
     }
-    if (fltEllipseX > width || fltEllipseX < 0) {
+    if (fltEllipseX >= width - fltEllipseX/25|| fltEllipseX <= 20) {
       fltEllipseXSpeed *= -1;
     }
 
-    if (fltEllipseY > height || fltEllipseY < 0) {
+    if (fltEllipseY >= height || fltEllipseY <= 25) {
       fltEllipseYSpeed *= -1;
     }
 
+    fltRectX = constrain(fltRectX, 0, width - 25);
+    fltRectY = constrain(fltRectY, 0, height - 25);
+    fltRectAngle += fltRectangleSpeed;
     // draw missile and move
 
 

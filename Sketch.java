@@ -30,7 +30,7 @@ public class Sketch extends PApplet {
   float fltRectY = 100;
 
   // creates float for the angle of the rectangle
-  float fltRectAngle;
+  float fltRectangleAngle;
 
   // face speed variables
   float fltXSpeed = random(1, 5);
@@ -89,8 +89,8 @@ public class Sketch extends PApplet {
     rect(fltRectX, fltRectY, 20,20);
 
     // makes rectangle move in a circular pattern
-    fltRectX += width / 4 * cos(fltRectAngle) * fltRectangleSpeed;
-    fltRectY += height / 4 * sin(fltRectAngle) * fltRectangleSpeed;
+    fltRectX += width / 4 * cos(fltRectangleAngle) * fltRectangleSpeed;
+    fltRectY += height / 4 * sin(fltRectangleAngle) * fltRectangleSpeed;
     
     // draw face
     image(imgFace, fltFaceX, fltFaceY);
@@ -120,7 +120,7 @@ public class Sketch extends PApplet {
     // sets boundaries for rectangle
     fltRectX = constrain(fltRectX, 0, width - 25);
     fltRectY = constrain(fltRectY, 0, height - 25);
-    fltRectAngle += fltRectangleSpeed;
+    fltRectangleAngle += fltRectangleSpeed;
    
   }
 }

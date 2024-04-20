@@ -1,32 +1,50 @@
 import processing.core.PApplet;
 import processing.core.PImage;
 
+/**
+* A program that animates a face, circle, and a rectangle.
+* @author: T.Chu
+* 
+*/
+
 public class Sketch extends PApplet {
 
-  PImage imgMeteor;
+  // sets face and backgroudn variables
+  PImage imgFace;
   PImage imgBackground;
   
-  // x and y coordinate for meteor
-  float fltMeteorX = 50;
-  float fltMeteorY = 100;
+  // x and y coordinate for face
+  float fltFaceX = 50;
+  float fltFaceY = 100;
+
+  // x and y coordinate for background
   float fltBackX = 0;
   float fltBackY = 0;
+
+  // x and u coordinate for circle
   float fltEllipseX = 50;
   float fltEllipseY = 100;
+
+  // x and y coordinate for rectangle
   float fltRectX = 50;
   float fltRectY = 100;
+
+  // creates float for the angle of the rectangle
   float fltRectAngle;
 
-
-  // meteor speed variables
+  // face speed variables
   float fltXSpeed = random(1, 5);
   float fltYSpeed = random(1, 5);
+
+  // circle speed variables
   float fltEllipseXSpeed = random(1,5);
   float fltEllipseYSpeed = random(1,5);
+
+  // rectangle speed variables
   float fltRectangleSpeed = (float)0.3;
+
   // define colours
   int black = color(0);
-  int white = color(255);
   int magenta = color(255, 0, 255);
 
   public void settings() {
@@ -34,55 +52,63 @@ public class Sketch extends PApplet {
   }
 
   public void setup() {
-    background(0, 0, 0);
-    // load meteor
-    imgMeteor = loadImage("george.jpeg");
-    // resize meteor
-    // imgMeteor.resize(50, 50);
-    imgMeteor.resize(imgMeteor.width/2, imgMeteor.height/2);
-    // load missile
 
-    // resize missile
+    // load Face
+    imgFace = loadImage("quan.jpg");
 
-    // load rocket
+    // resize Face
+    imgFace.resize(imgFace.width/8, imgFace.height/8);
 
-    // resize rocket
-
-    // background
+    // load background
     imgBackground = loadImage("size.png");
+
+    // resize background
     imgBackground.resize(imgBackground.width*2, imgBackground.height*2);
 
-
-    
   }
 
   public void draw() {
     
+    // draws background
     image (imgBackground, fltBackX, fltBackY);
+
+    // set color circle to black
     fill(black);
+
+    // draws circle
     ellipse(fltEllipseX,fltEllipseY,50,50);
+
+    // moves circle 
     fltEllipseX+=fltEllipseXSpeed;
     fltEllipseY+=fltEllipseYSpeed;
+
+    // set rectangle color to magenta
     fill(magenta);
+
+    // draws rectangle
     rect(fltRectX, fltRectY, 20,20);
+
+    // makes rectangle move in a circular pattern
     fltRectX += width / 4 * cos(fltRectAngle) * fltRectangleSpeed;
     fltRectY += height / 4 * sin(fltRectAngle) * fltRectangleSpeed;
     
-    
-    // draw meteor and move
-    image(imgMeteor, fltMeteorX, fltMeteorY);
+    // draw face
+    image(imgFace, fltFaceX, fltFaceY);
 
-    fltMeteorX += fltXSpeed;
-    fltMeteorY += fltYSpeed;
+    // moves face
+    fltFaceX += fltXSpeed;
+    fltFaceY += fltYSpeed;
 
-
-    if (fltMeteorX >= width - imgMeteor.width || fltMeteorX <= 0) {
+    // sets boundaries for face
+    if (fltFaceX >= width - imgFace.width || fltFaceX <= 0) {
       fltXSpeed *= -1;
     }
 
-    if (fltMeteorY >= height - imgMeteor.height || fltMeteorY <= 0) {
+    if (fltFaceY >= height - imgFace.height || fltFaceY <= 0) {
       fltYSpeed *= -1;
     }
+
+    // sets boundaries for circle
     if (fltEllipseX >= width - fltEllipseX/25|| fltEllipseX <= 20) {
       fltEllipseXSpeed *= -1;
     }
@@ -91,13 +117,10 @@ public class Sketch extends PApplet {
       fltEllipseYSpeed *= -1;
     }
 
+    // sets boundaries for rectangle
     fltRectX = constrain(fltRectX, 0, width - 25);
     fltRectY = constrain(fltRectY, 0, height - 25);
     fltRectAngle += fltRectangleSpeed;
-    // draw missile and move
-
-
-    // draw rocket and move
-
+   
   }
 }

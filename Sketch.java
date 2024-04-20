@@ -47,9 +47,19 @@ public class Sketch extends PApplet {
   int black = color(0);
   int magenta = color(255, 0, 255);
 
+   /**
+  * @param settings sets the size of the window
+  * @author T.Chu
+  */
+
   public void settings() {
     size(400, 400);
   }
+
+ /**
+  * @param setup loads and resizes the face and background images
+  * @author T.Chu
+  */
 
   public void setup() {
 
@@ -57,15 +67,20 @@ public class Sketch extends PApplet {
     imgFace = loadImage("quan.jpg");
 
     // resize Face
-    imgFace.resize(imgFace.width/8, imgFace.height/8);
+    imgFace.resize(imgFace.width / 8, imgFace.height / 8);
 
     // load background
     imgBackground = loadImage("size.png");
 
     // resize background
-    imgBackground.resize(imgBackground.width*2, imgBackground.height*2);
+    imgBackground.resize(imgBackground.width * 2, imgBackground.height * 2);
 
   }
+
+  /**
+  * @param Draw Draws the face, circle, and rectangle, and animates them
+  * @author T.Chu
+  */
 
   public void draw() {
     
@@ -76,11 +91,11 @@ public class Sketch extends PApplet {
     fill(black);
 
     // draws circle
-    ellipse(fltEllipseX,fltEllipseY,50,50);
+    ellipse(fltEllipseX, fltEllipseY, 50, 50);
 
     // moves circle 
-    fltEllipseX+=fltEllipseXSpeed;
-    fltEllipseY+=fltEllipseYSpeed;
+    fltEllipseX += fltEllipseXSpeed;
+    fltEllipseY += fltEllipseYSpeed;
 
     // set rectangle color to magenta
     fill(magenta);
@@ -123,4 +138,5 @@ public class Sketch extends PApplet {
     fltRectangleAngle += fltRectangleSpeed;
    
   }
+
 }

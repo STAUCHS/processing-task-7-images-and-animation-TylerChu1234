@@ -47,7 +47,7 @@ public class Sketch extends PApplet {
   int black = color(0);
   int magenta = color(255, 0, 255);
 
-   /**
+  /**
   * @param settings sets the size of the window
   * @author T.Chu
   */
@@ -56,7 +56,7 @@ public class Sketch extends PApplet {
     size(400, 400);
   }
 
- /**
+  /**
   * @param setup loads and resizes the face and background images
   * @author T.Chu
   */
